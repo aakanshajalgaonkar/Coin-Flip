@@ -1,58 +1,103 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flip the Coin | devChallenges.io</title>
+  <link rel="icon" href="resources/favicon.ico" type="image/x-icon" sizes="96x96" />
 
-    <link
-      rel="icon"
-      href="resources/favicon.ico"
-      type="image/x-icon"
-      sizes="96x96"
-    />
+  <style>
+    body {
+      background-color: #404A65;
+      font-family: sans-serif;
+    }
 
-    <title>Flip the coin | devChallenges.io</title>
+    h1 {
+      text-align: center;
+      color: #ECEDF0;
+      font-size: 48px;
+      text-shadow: -2px -2px 0 #111113,
+                    2px -2px 0 #111113,
+                   -2px  2px 0 #111113,
+                    2px  2px 0 #111113;
+    }
 
-    <!--You are welcome to delete these styles or modify them in your own stylesheet -->
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    h4 {
+      text-align: center;
+      color: #ECEDF0;
+      margin-bottom: 20px;
+    }
 
-      body {
-        height: 100vh;
-      }
+    h2 {
+      text-align: center;
+      color: #ECEDF0;
+      margin-top: 24px;
+      font-size: 32px;
+    }
 
-      .author-info {
-        font-size: 14px;
-        text-align: center;
-        margin-top: 16px;
-        color: rgb(55, 65, 81);
-      }
+    img {
+      display: block;
+      
+      margin: 20px auto;
+      width: 150px;
+      transition: transform 0.5s ease;
+      margin-top: 60px;
+    }
 
-      .author-info a {
-        text-decoration: none;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- 
+    img.flip {
+      transform: rotateY(180deg);
+    }
 
-    Flip a Coin Game
-    Press the coin or the button to flip the coin
-    Head
-    Tail
-    Random
-  
-    -->
+    button {
+      background-color: #1F6FB0;
+      color: #ECEDF0;
+      font-size: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+      transition: transform 0.3s ease;
+      margin-top: 50px;
+    }
 
-    <div class="author-info">
-      Coded by <a href="#">Your Name Here</a> | Challenge by
-      <a href="https://www.devchallenges.io?ref=challenge" target="_blank"
-        >devChallenges.io</a
-      >.
-    </div>
-  </body>
+    button:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Flip the Coin</h1>
+  <h4>Press the coin or the button to flip the coin</h4>
+
+  <img id="coin" src="file:///C:/Users/akans/AppData/Local/Temp/0419ab99-3b51-43b6-859a-cf7e0c7e023f_flip-the-coin-master%20(1).zip.23f/flip-the-coin-master/resources/heads.svg" alt="Coin" />
+  <h2 id="result">Heads</h2>
+  <button id="flipBtn">Random</button>
+
+  <script>
+    const coin = document.getElementById("coin");
+    const result = document.getElementById("result");
+    const button = document.getElementById("flipBtn");
+
+    button.addEventListener("click", () => {
+      coin.classList.add("flip");
+
+      setTimeout(() => {
+        const isHeads = Math.random() < 0.5;
+        coin.src = isHeads ? "file:///C:/Users/akans/AppData/Local/Temp/0419ab99-3b51-43b6-859a-cf7e0c7e023f_flip-the-coin-master%20(1).zip.23f/flip-the-coin-master/resources/heads.svg": "file:///C:/Users/akans/AppData/Local/Temp/533f49a6-df17-46a8-a99f-a35ac9919e8c_flip-the-coin-master%20(1).zip.e8c/flip-the-coin-master/resources/tails.svg";
+        result.textContent = isHeads ? "Heads" : "Tails";
+        coin.classList.remove("flip");
+      }, 300);
+    });
+
+    coin.addEventListener("click", () => {
+      button.click(); // Flip when coin is clicked
+    });
+  </script>
+
+</body>
 </html>
